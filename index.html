@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Odin Recipes</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="./img/real-logo-odin-recipe.svg" alt="Odin Recipes Logo" width="296" height="134" />
+    <nav>
+      <ul class="header-ul">
+        <li class="header-list lexend-header">Top Recipes</li>
+        <li class="search">
+          <form id="search-form">
+            <input type="text" id="search-input" placeholder="Search recipe" class="lexend-header" />
+            <button type="submit" id="search-button">
+              <i class="search">
+                <!-- SVG Icon for Search -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 21l-5.197-5.197M21 21a7.5 7.5 0 1 1-10.607-10.607 7.5 7.5 0 0 1 10.607 10.607z"></path>
+                </svg>
+              </i>
+            </button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <hr />
+  <!-- Recipes -->
+  <ul class="recipes" id="recipes-list">
+    <!-- Pancakes Recipe -->
+    <li class="recipe-item" id="pancakes-recipe">
+      <a href="./recipes/pancakes.html" target="_blank" rel="noopener noreferrer" class="recipe">
+        Pancakes with Banana and Dulce de Leche
+      </a>
+    </li>
+    <!-- Gnocchi Recipe -->
+    <li class="recipe-item" id="gnocchi-recipe">
+      <a href="./recipes/gnocchi.html" target="_blank" rel="noopener noreferrer" class="recipe">
+        Gnocchi with Bolognese Sauce
+      </a>
+    </li>
+  </ul>
+
+  <script>
+    // Search Functionality
+    const searchForm = document.getElementById('search-form');
+    const searchInput = document.getElementById('search-input');
+    const recipesList = document.getElementById('recipes-list');
+    const allRecipes = [...recipesList.querySelectorAll('.recipe-item')];
+
+    searchForm.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent form submission
+      const searchTerm = searchInput.value.trim().toLowerCase();
+
+      allRecipes.forEach(recipe => {
+        const recipeTitle = recipe.querySelector('.recipe').innerText.toLowerCase();
+        if (recipeTitle.includes(searchTerm)) {
+          recipe.style.display = 'block';
+        } else {
+          recipe.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
